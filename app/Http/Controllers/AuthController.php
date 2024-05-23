@@ -8,16 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-     /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    /*public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login']]);
-    }*/
-
+    // Create new User
     public function register(Request $request){
         User::create([
             'name' => $request->name,
@@ -26,11 +17,7 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    // Get a JWT via given credentials
     public function login()
     {
         $credentials = request(['email', 'password']);
@@ -42,45 +29,26 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    // Get the authenticated User
     public function me()
     {
         return response()->json(auth()->user());
     }
 
-    /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    // Log the user out (Invalidate the token)
     public function logout()
     {
         auth()->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    // Refresh a token
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
     }
 
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    // Get the token array structure
     protected function respondWithToken($token)
     {
         return response()->json([

@@ -47,12 +47,11 @@ class MemberController extends Controller
     public function update(Request $request, string $id, UpdateAction $result) : JsonResponse
     {
         try {
-            $member = Member::find($id);
             $request->validate([
                 Member::NAME => 'string|max:255',
-                'surname' => 'string|max:255',
-                'email' => 'email|unique:members,email',
-                'date_of_birth' => 'date',
+                MEMBER::SURNAME => 'string|max:255',
+                MEMBER::EMAIL => 'email|unique:members,email',
+                MEMBER::DATE_OF_BIRTH => 'date',
             ]);
             return response()->json($result->run($request, $id, $this->memberRepository));
         } catch (ValidationException $e) {

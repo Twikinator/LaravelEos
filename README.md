@@ -23,14 +23,21 @@ Created by seeders
 
 JWT, or JSON Web Token, is a compact, URL-safe way to transfer claims between parties. It consists of three parts: a header, payload (claims), and signature. The claims contain information about the user or entity
 
-| Syntax                   | Description                | Required                   |
-| ------------------------ | -------------------------- | -------------------------- |
-| `POST api/auth/register` | Create new user            | name, email, password      |
-| `POST api/auth/login`    | Create new JWT             | email, password            |
-| `POST api/auth/me`       | Get information about user | Authorization Bearer token |
+| Syntax                   | Description                               | Required                   |
+| ------------------------ | ----------------------------------------- | -------------------------- |
+| `POST api/auth/register` | Create new user                           | name, email, password      |
+| `POST api/auth/login`    | Create new JWT                            | email, password            |
+| `POST api/auth/me`       | Get information about user                | Authorization Bearer token |
+| `POST api/auth/logout`   | Invalide the token                        | Authorization Bearer token |
+| `POST api/auth/refresh`  | Refresh current token (returns a new one) | Authorization Bearer token |
 
 # Bonus features
-- PORTO architecture
-- Repository pattern
-- Pest tests
-- JWT Bearer token
+
+-   PORTO architecture
+-   Repository pattern
+-   Pest tests
+-   JWT Bearer token
+
+# TODO
+- Logout and refresh - how it works
+- Error handling
