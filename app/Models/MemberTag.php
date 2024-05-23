@@ -9,10 +9,17 @@ use App\Containers\Members\Models\Member;
 class MemberTag extends Model
 {
     use HasFactory;
+    public const NAME = "name";
+    public const MEMBER_ID = "member_id";
     
     protected $fillable = [
-        'name',
-        'member_id'
+        self::NAME,
+        self::MEMBER_ID
+    ];
+
+    protected $casts = [
+        self::MEMBER_ID => 'integer',
+        self::NAME => 'string'
     ];
 
     //defines a relationship between the MemberTag and Member models
