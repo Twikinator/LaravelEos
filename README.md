@@ -40,4 +40,3 @@ JWT, or JSON Web Token, is a compact, URL-safe way to transfer claims between pa
 
 # TODO
 - Logout and refresh - how it works
-- Error handling
