@@ -8,24 +8,25 @@ use App\Models\MemberTag;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Http\JsonResponse;
 
 class MemberRepository implements MemberRepositoryInterface
 {
-    public function all()
+    public function all(): JsonResponse
     {
-        return Member::all();
+        return response()->json(Member::all());
     }
 
-    public function find($id)
+    public function find($id): JsonResponse
     {
         try {
-            return Member::findOrFail($id);
+            return response()->json(Member::findOrFail($id));
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Member not found'], 404);
         }
     }
 
-    public function create(array $data)
+    public function create(array $data): JsonResponse
     {
         try {
             Validator::make($data, [
@@ -41,7 +42,7 @@ class MemberRepository implements MemberRepositoryInterface
         }
     }
 
-    public function update($id, array $data)
+    public function update($id, array $data): JsonResponse
     {
         try {
             $member = Member::findOrFail($id);
@@ -62,7 +63,7 @@ class MemberRepository implements MemberRepositoryInterface
         }
     }
 
-    public function delete($id)
+    public function delete($id): JsonResponse
     {
         try {
             Member::findOrFail($id);
@@ -73,7 +74,7 @@ class MemberRepository implements MemberRepositoryInterface
         }
     }
 
-    public function attachTag(array $data, $memberId)
+    public function attachTag(array $data, $memberId): JsonResponse
     {
         try {
             Member::findOrFail($memberId);
