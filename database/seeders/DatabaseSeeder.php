@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Member;
+use App\Containers\Members\Models\Member;
 use App\Models\MemberTag;
 
 class DatabaseSeeder extends Seeder

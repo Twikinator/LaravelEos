@@ -22,33 +22,33 @@ class MemberController extends Controller
     }
 
 
-    public function attachTag(Request $request, $memberId, AttachTagAction $result): JsonResponse
+    public function attachTag(Request $request, $memberId, AttachTagAction $action): JsonResponse
     {
-        return response()->json($result->run($request, $memberId, $this->memberRepository));
+        return response()->json($action->run($request, $memberId, $this->memberRepository));
     }
 
-    public function index(ShowAllAction $result): JsonResponse
+    public function index(ShowAllAction $action): JsonResponse
     {
-        return response()->json($result->run($this->memberRepository));
+        return response()->json($action->run($this->memberRepository));
     }
 
-    public function store(Request $request, StoreAction $result): JsonResponse
+    public function store(Request $request, StoreAction $action): JsonResponse
     {
-        return response()->json($result->run($request, $this->memberRepository));
+        return response()->json($action->run($request, $this->memberRepository));
     }
 
-    public function show(string $id, ShowOneAction $result): JsonResponse
+    public function show(string $id, ShowOneAction $action): JsonResponse
     {
-        return response()->json($result->run($id, $this->memberRepository));
+        return response()->json($action->run($id, $this->memberRepository));
     }
 
-    public function update(Request $request, string $id, UpdateAction $result): JsonResponse
+    public function update(Request $request, string $id, UpdateAction $action): JsonResponse
     {
-        return response()->json($result->run($request, $id, $this->memberRepository));
+        return response()->json($action->run($request, $id, $this->memberRepository));
     }
 
-    public function destroy(string $id, DestroyMemberAction $result): JsonResponse
+    public function destroy(string $id, DestroyMemberAction $action): JsonResponse
     {
-        return response()->json($result->run($id, $this->memberRepository));
+        return response()->json($action->run($id, $this->memberRepository));
     }
 }

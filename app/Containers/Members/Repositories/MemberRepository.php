@@ -65,6 +65,15 @@ class MemberRepository implements MemberRepositoryInterface
 
     public function delete($id): JsonResponse
     {
+        $tags = MemberTag::where(MemberTag::MEMBER_ID, $id)->get();
+        // foreach ($tags as $tag) {
+        //     $tag->delete();
+        // }
+        foreach ($tags as $tag) {
+            $tag->member_id = null;
+            $tag->save();
+        }
+
         try {
             Member::findOrFail($id);
             Member::destroy($id);
